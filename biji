@@ -28,3 +28,6 @@ Gruntfile.js  Grunt自动化编译工具的配置文件
 karma.conf.js  karma测试框架的配置文件
 package.json  npm的配置文件 声明当前项目都用了哪些npm包
 
+
+思路：
+1  准备图片数据
