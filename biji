@@ -1,0 +1,30 @@
+1 安装  generator-react-webpack
+npm install -g generator-react-webpack
+2 查看 已经安装的 generator
+npm ls -g --depth=1 2>/dev/null | grep generator-
+解释：npm ls -g  列出所有的npm包 
+     --depth=1  限制查询出来的树状结构只显示一层
+     > 表示重定向
+     1 表示标准输出
+     2 表示标准错误
+     ／dev／null 表示空设备文件
+     2>/dev/null 表示 如果执行npm命令发生错误以后 把错误消息重定向到空设备文件
+     ｜ 表示通道   将上一个命令的输出内容 作为下一个命令的输入内容
+     grep generator-  表示在前面npm命令检索出来的内容中找出以generator关键字开头的内容
+3 运行 yo react-webpack react-gallery
+
+4 安装完成后的项目结构
+node_modules   项目编译所需要的node组件包
+src 源代码所在目录
+test  测试代码所在目录
+.editorconfig  用来统一不同的编辑器  让这个配置文件生效的前提是 你所用的编辑器支持editorconfig的插件 
+editorconfig的官网地址： editorconfig.org
+.gitignore  git 忽略的文件
+.eslintrc   默认包含所有jshintrc里面所有的规则 都是用来约束js代码的
+.jshintrc   一般用jshintrc就用用了  但是react中的jsx不被jshintrc支持 所以要用eslintrc
+一般带有lint或者hint的文件都是代码检测工具
+.yo-rc.json  yoman的配置文件 用来记录当前项目的相关信息
+Gruntfile.js  Grunt自动化编译工具的配置文件
+karma.conf.js  karma测试框架的配置文件
+package.json  npm的配置文件 声明当前项目都用了哪些npm包
+
