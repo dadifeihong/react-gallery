@@ -1,3 +1,10 @@
+@font-face {font-family: "iconfont";
+  src: url('./fonts/iconfont.eot?t=1469985703'); /* IE9*/
+  src: url('./fonts/iconfont.eot?t=1469985703#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('./fonts/iconfont.woff?t=1469985703') format('woff'), /* chrome, firefox */
+  url('./fonts/iconfont.ttf?t=1469985703') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('./fonts/iconfont.svg?t=1469985703#iconfont') format('svg'); /* iOS 4.1- */
+}
 /* Base Application Styles */
 html,body {
    
@@ -92,6 +99,37 @@ html,body {
   z-index: 101;
   width: 100%;
   text-align: center;
+  @at-root{
+    .controller-unit{
+       display: inline-block;
+       margin: 0 5px;
+       border-radius:50%;
+       text-align:center;
+       width:30px;
+       height:30px;
+       line-height:30px;
+       background-color:#aaa;
+       transform:scale(.5);
+       vertical-align:middle;
+       transition:transform .6s ease-in-out,background-color .3s;
+       &.is-center{
+          transform: scale(1);
+          background-color: #888;
+          font-size: 24px;
+          &::after{
+            font-family: 'iconfont';
+            content:'\e600';
+            color: #fff;
+           
+          }
+       }
+       &.is-inverse{
+         background-color: #555;
+         transform: rotateX(180deg);
+       }
+
+    }
+  }
 }
 /* controller  -- end  */
  

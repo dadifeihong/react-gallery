@@ -50,8 +50,8 @@ var ImgFigure = React.createClass({
     //如果rotate不为0，就添加rotate值
     if(this.props.arrange.rotate){
       //添加厂商前缀
-      (['Webkit','ms','Moz','']).forEach(function(value){
-          styleObjec[value+'Transform'] = 'rotate('+this.props.arrange.rotate+'deg)';
+      (['WebkitTransform','msTransform','MozTransform','transform']).forEach(function(value){
+          styleObjec[value] = 'rotate('+this.props.arrange.rotate+'deg)';
       }.bind(this))
     }
     //设置中心图片的层级
@@ -77,6 +77,31 @@ var ImgFigure = React.createClass({
     );
   }
 });
+//控制组件
+var ControllerUnit = React.createClass({
+  handleClick:function(e){
+    console.log(1);
+    if(this.props.arrange.isCenter){
+      this.props.inverse();
+    }else{
+      this.props.center();
+    }
+    e.preventDefault();
+    e.stopPropagation();
+  },
+  render:function(){
+      var ControllerUnitClassName = "controller-unit";
+      //如果显示的是图片的居中状态，对应显示相应的控制状态
+      if(this.props.arrange.isCenter){
+         ControllerUnitClassName += ' is-center';
+         //如果同时显示的是图片的翻转状态 那么对应显示控制按钮的翻转状态
+         if(this.props.arrange.isInverse){
+           ControllerUnitClassName += ' is-inverse';
+         }
+      }
+      return <span onClick={this.handleClick} className={ControllerUnitClassName}></span>
+  }
+})
 
 class AppComponent extends React.Component {
 
@@ -123,7 +148,7 @@ class AppComponent extends React.Component {
    */
    center (index){
        return function(){
-          console.log(index);
+          // console.log(index);
           this.rearrange(index);
        }.bind(this)
    }
@@ -287,7 +312,10 @@ class AppComponent extends React.Component {
          }
       }
       imgFigures.push(<ImgFigure center={this.center(index)} inverse={this.inverse(index)} arrange={this.state.imgsArrangeArr[index]} data={element} ref={'imgFigure'+index} key={element._id + Date.now}/>);
+      controllerUnits.push(<ControllerUnit arrange={this.state.imgsArrangeArr[index]} center={this.center(index)} inverse={this.inverse(index)} key={element._id + Date.now} />);
+  
     }.bind(this));
+      
     return (
       <div className="index">
         <section className="stage" ref="stage">
